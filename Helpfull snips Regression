@@ -5,3 +5,5 @@ s_y <- sd(galton_heights$son) #example of y
 r <- cor(galton_heights$father, galton_heights$son) #cor between x and y
 m_1 <-  r * s_y / s_x 
 b_1 <- mu_y - m_1*mu_x
+m_2 <-  r * s_x / s_y
+b_2 <- mu_x - m_2*mu_y
