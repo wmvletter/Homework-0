@@ -7,3 +7,12 @@ m_1 <-  r * s_y / s_x
 b_1 <- mu_y - m_1*mu_x
 m_2 <-  r * s_x / s_y
 b_2 <- mu_x - m_2*mu_y
+
+
+
+ps <- seq(0, 1, 0.1)
+dat %>% 
+   mutate(g = cut(x, quantile(x, ps), include.lowest = TRUE)) %>%  
+   group_by(g) %>%  
+   summarize(y = mean(y), x = mean(x)) %>%
+    qplot(x, y, data =.)
