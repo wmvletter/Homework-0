@@ -1,0 +1,7 @@
+mu_x <- mean(galton_heights$father) #example of x
+mu_y <- mean(galton_heights$son) #example of y
+s_x <- sd(galton_heights$father) #example of x
+s_y <- sd(galton_heights$son) #example of y
+r <- cor(galton_heights$father, galton_heights$son) #cor between x and y
+m_1 <-  r * s_y / s_x 
+b_1 <- mu_y - m_1*mu_x
