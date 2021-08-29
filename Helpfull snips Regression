@@ -44,3 +44,19 @@ fit$coef
 
 y_hat <- fit$coef[1] + fit$coef[2]*test_set$father
 mean((y_hat - test_set$son)^2)
+
+
+#RMSE
+# set.seed(1) # if using R 3.5 or earlier
+set.seed(1, sample.kind="Rounding") # if using R 3.6 or later
+rmse <- replicate(100, {
+	test_index <- createDataPartition(dat$y, times = 1, p = 0.5, list = FALSE)
+	train_set <- dat %>% slice(-test_index)
+	test_set <- dat %>% slice(test_index)
+	fit <- lm(y ~ x, data = train_set)
+ 	y_hat <- predict(fit, newdata = test_set)
+	sqrt(mean((y_hat-test_set$y)^2))
+})
+
+mean(rmse)
+sd(rmse)
